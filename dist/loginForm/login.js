@@ -1,6 +1,20 @@
 var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
+
 function validate(){
+  
+  var text = '{ "employees" : [' +
+    '{ "username":"John" , "password":"Doe" },' +
+    '{ "username":"Anna" , "password":"Smith" },' +
+    '{ "username":"Peter" , "password":"Jones" } ]}';
+    
+    
+    var obj = JSON.parse(text);
+
+    //Exapmle in console.log()
+    console.log(obj.employees[0].username);
+    console.log(obj.employees[0].password);
+
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     if ( username == "Formget" && password == "formget#123"){
