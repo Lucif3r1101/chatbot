@@ -24,29 +24,20 @@
 	                                <input type="text" name="name" data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
 	                                <input type="text" data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)" data-no-answer="true">
 	                                <input type="text" data-conv-question="Please Login to continue" data-no-answer="true">
-	                                <select data-conv-question="Login Please:" wait>
-										<option value="creds" data-callback="creds">Login</option>
-										<script>
-											function creds(stateWrapper, ready) {
-												window.open("dist/loginForm/login.html");
-												ready();
-												const channel = new BroadcastChannel("login-channel");
-												channel.addEventListener("message",e=>{console.log(e)});
-											}
-										</script>		
+									<input data-conv-question="Enter Password" data-callback="storeState" type="password" data-minlength="6" id="senha" name="password" required placeholder="password" wait>
+											
+									<select name="success" data-conv-question="Let me check? hmm did you forgot password">
+	                                    <option value="yes" data-callback="rollback">Yes</option>
+	                                    <option value="no" data-callback="restore">No..</option>	 
 									</select>
-									<select name="programmer" data-callback="storeState" data-conv-question="So, are you a programmer? (this question will fork the conversation based on your answer)">
-	                                    <option value="yes">Yes</option>
-	                                    <option value="no">No</option>
-	                                </select>
 	                                <div data-conv-fork="programmer">
 	                                    <div data-conv-case="yes">
 	                                        <input type="text" data-conv-question="A fellow programmer! Cool." data-no-answer="true">
 	                                    </div>
 	                                    <div data-conv-case="no">
 		                                    <select name="thought" data-conv-question="Have you ever thought about learning? Programming is fun!">
-		                                    	<option value="yes">Yes</option>
-		                                    	<option value="no">No..</option>
+		                                    	<option value="yes" data-callback="rollback">Yes</option>
+		                                    	<option value="no" data-callback="restore">No..</option>
 		                                    </select>
 	                                    </div>
 	                                </div>

@@ -161,8 +161,8 @@ ConvState.prototype.printAnswers = function(answers, multiple){
     if(!opened) {
         var diff = $(this.wrapper).find('div.options').height();
         var originalHeight = $(this.wrapper).find('.wrapper-messages').height();
-        $(this.wrapper).find('.wrapper-messages').data('originalHeight', originalHeight);
-        $(this.wrapper).find('.wrapper-messages').css({marginBottom: diff, maxHeight: originalHeight-diff});
+        $(this.wrapper).find('.wrap-mper-messages').data('originalHeight', originalHeight);
+        $(this.wrapper).find('.wrapperessages').css({marginBottom: diff, maxHeight: originalHeight-diff});
     }
     if(this.parameters.selectInputStyle=='disable') {
         $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', true);
@@ -199,10 +199,14 @@ ConvState.prototype.answerWith = function(answerText, answerObject) {
         }
     }
     //prints answer within messages wrapper
-    if(this.current.input.type == 'password')
+    if(this.current.input.type == 'password'){
+        console.log(answerText);
+        
         answerText = answerText.replace(/./g, '*');
-    var message = $('<div class="message from">'+answerText+'</div>');
 
+    }
+    var message = $('<div class="message from">'+answerText+'</div>');
+    
     if(this.current.input.type=='select' && this.parameters.selectInputStyle=='disable') {
         $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
         $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
